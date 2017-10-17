@@ -18,12 +18,13 @@ classifier.add(Convolution2D(32,(3,3),input_shape=(64,64,3),activation='relu')) 
 # Pooling
 classifier.add(MaxPooling2D(pool_size=(2,2))) # 2x2 is optimal
 
-# Adding a second convolutional layer to improve the CNN
+# Adding additional convolutional layers to improve the CNN
 classifier.add(Convolution2D(32,(3,3),activation='relu')) # input_shape in theano background will be (3,64,64)
 classifier.add(MaxPooling2D(pool_size=(2,2)))
 classifier.add(Convolution2D(32,(3,3),activation='relu')) 
 classifier.add(MaxPooling2D(pool_size=(2,2)))
 classifier.add(Convolution2D(32,(3,3),activation='relu')) 
+classifier.add(MaxPooling2D(pool_size=(2,2)))
 
 # Flattening
 classifier.add(Flatten())

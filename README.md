@@ -13,7 +13,8 @@ Dataset Description: A clean, preprocessed image dataset containing 10000 cat an
 
 Classifier built to experiment around with different features of CNNs in Keras. This helps in understanding how important it is to reduce the dimensions through convolutions and max pooling to better the accuracies.
 
-Next up, stay tuned!
+Next up, 
+
 ● RNN - Recurrent Neural Networks
 
-
+Stay tuned!

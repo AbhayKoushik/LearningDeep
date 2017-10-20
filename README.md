@@ -17,4 +17,5 @@ Next up,
 
 ● RNN - Recurrent Neural Networks
 
+Basic Structure is added, need to be evaluated, tuned and improvised
 Stay tuned!

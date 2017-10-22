@@ -90,4 +90,63 @@ plt.ylabel('Google Stock Price')
 plt.legend()
 plt.show()
 
+# Evaluating the RNN
+
+import math
+from sklearn.metrics import mean_squared_error
+rmse=math.sqrt(mean_squared_error(real_stock_price,predicted_stock_price))
+
+# Improving and tuning the RNN
+
+training_set=pd.read_csv('Google_Stock_Price_Train.csv')
+training_set=training_set.iloc[:,1:2].values
+
+# Feature Scaling
+from sklearn.preprocessing import MinMaxScaler
+sc=MinMaxScaler()
+training_set=sc.fit_transform(training_set)
+ 
+# Creating a data structure with 20 timesteps and t+1 output
+X_train=[]
+y_train=[]
+for i in range(20, 1258):
+    X_train.append(training_set[i-20:i, 0])  # The train set needs to be scaled before this
+    y_train.append(training_set[i, 0])
+X_train, y_train=np.array(X_train), np.array(y_train)
+
+X_train=np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1)) 
+
+# Improvised RNN model
+model=Sequential()
+model.add(LSTM(3,activation='sigmoid',input_shape=(X_train.shape[1],X_train.shape[2])))
+model.add(Dense(units=1))
+model.compile(loss='mean_squared_error', optimizer='rmsprop')
+# fit network
+model.fit(X_train, y_train, epochs=100, batch_size=32, verbose=1, shuffle=False)
+
+# Getting the real stock price for February 1st 2012 - January 31st 2017
+dataset_test=pd.read_csv('Google_Stock_Price_Test.csv')
+test_set=dataset_test.iloc[:,1:2].values
+real_stock_price=np.concatenate((training_set[0:1258], test_set), axis = 0)
+
+# Getting the predicted stock price of 2017
+scaled_real_stock_price=sc.fit_transform(real_stock_price)
+inputs=[]
+for i in range(1258, 1278):
+    inputs.append(scaled_real_stock_price[i-20:i, 0])
+inputs=np.array(inputs)
+inputs=np.reshape(inputs, (inputs.shape[0], inputs.shape[1], 1))
+predicted_stock_price=model.predict(inputs)
+predicted_stock_price=sc.inverse_transform(predicted_stock_price)
+
+# Visualising the results
+plt.plot(real_stock_price[1258:], color = 'red', label = 'Real Google Stock Price')
+plt.plot(predicted_stock_price, color = 'blue', label = 'Predicted Google Stock Price')
+plt.title('Google Stock Price Prediction')
+plt.xlabel('Time')
+plt.ylabel('Google Stock Price')
+plt.legend()
+plt.show()
+
+
 

@@ -20,3 +20,9 @@ Next up,
 Dataset Description: A Google stock price information for the years 2012 to 2016. It has 1258 readings for training. The test data is the stock price readings for the year 2017. 
 
 Regressor built to experiment the Keras LSTM model. The first regressor which has a single time step is improved to include 20 time-steps. This helps in understanding how a time-series regressor model is trained.
+
+● SOM - Self Organized Maps
+
+Dataset Description: A Credit Card Applications dataset from the UCI Machine Learning Repository. It has 690 instances of customer transactions, with 15 attribute features. 
+
+Classifier built to detect Customer fraud using minimalistic SOM model. This helps in understanding how SOMs work in an unsupervised manner and how they are different from Neural Networks with activation functions.

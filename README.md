@@ -26,3 +26,11 @@ Regressor built to experiment the Keras LSTM model. The first regressor which ha
 Dataset Description: A Credit Card Applications dataset from the UCI Machine Learning Repository. It has 690 instances of customer transactions, with 15 attribute features. 
 
 Classifier built to detect Customer fraud using minimalistic SOM model. This helps in understanding how SOMs work in an unsupervised manner and how they are different from Neural Networks with activation functions.
+
+● Hybrid Model - SOM with ANN
+
+Dataset Description: Same as that for SOM - Credit Card Applications
+
+A hybrid Classifier built to achieve a model with better accuracies. Building a hybrid model helps in understanding the models individually (here, SOM and ANN) and how well the data can be processed to connect different models to obtain better ones.
+
+

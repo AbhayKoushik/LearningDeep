@@ -1,6 +1,6 @@
 # Artificial Neural Network
 
-# Part 1 - Data Preprocessing
+# Data Preprocessing
 # Importing the libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -32,7 +32,7 @@ sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
-# Part 2 - The ANN Model
+# The ANN Model
 
 # Importing the Keras libraries and packages
 import keras
@@ -65,7 +65,7 @@ print("Elapsed time: ",elapsed_time)
 test_score = classifier.evaluate(X_test,y_test)
 print("\n test %s: %.2f%%" % (classifier.metrics_names[1], test_score[1]*100))
 
-# Part 3 - Making predictions and evaluating the model
+# Making predictions and evaluating the model
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
@@ -92,7 +92,8 @@ def build_classifier():
     return classifier
 
 classifier=KerasClassifier(build_fn=build_classifier,batch_size=10,epochs=100)
-accuracies=cross_val_score(estimator=classifier,X=X_train,y=y_train,cv=10,n_jobs=-1)
+accuracies=cross_val_score(estimator=classifier,X=X_train,y=y_train,cv=10,n_jobs=1) # n_jobs=1 => 1 CPU core.
+# Currently, multi CPU core processing is not supported with my configuration. Successfully raised the issue on scikit-learn.  
 mean=accuracies.mean()
 variance=accuracies.std()
 
